@@ -1,0 +1,1 @@
+waves-luport_address = "3PEXiW1BrBNMo5A9dfj2CnBW2mwMiaf2sAe"
