@@ -8,8 +8,8 @@ git_c () {
   ssh-agent bash -c "ssh-add /root/keys_gh/gh; $1"
 }
 # git_c "git pull origin $branch"
-git_c "git pull origin develop"
-git_c "git checkout develop"
+git_c "git pull origin develop-deploy_setup"
+git_c "git checkout develop-deploy_setup"
 
 echo Installing requirements via pip...
 pip3 install -r requirements.txt
