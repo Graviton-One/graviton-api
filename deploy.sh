@@ -21,7 +21,7 @@ echo Activating the virtual environment...
 source ./venv/bin/activate
 
 echo Installing requirements via pip...
-pip3 install -r requirements.txt
+pip install -r requirements.txt
 
 echo Launching the API server...
-python3 api.py
+gunicorn --bind 0.0.0.0:5000 wsgi:app
