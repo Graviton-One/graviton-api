@@ -21,7 +21,7 @@ git_c "git checkout develop-deploy_setup"
 #source ./venv/bin/activate
 
 echo Installing requirements via pip...
-pip install -r requirements.txt
+pip3 install -r requirements.txt
 
 echo Relaunching the systemd server...
 systemctl status graviton-api.service
