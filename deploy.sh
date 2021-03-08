@@ -11,14 +11,17 @@ git_c () {
 git_c "git pull origin develop-deploy_setup"
 git_c "git checkout develop-deploy_setup"
 
-echo Installing requirements via pip...
-pip3 install -r requirements.txt
+echo Installing venv...
+apt install python3-venv
 
 echo Creating a virtual environment...
 python3 -m venv venv 
 
 echo Activating the virtual environment...
 source ./venv/bin/activate
+
+echo Installing requirements via pip...
+pip3 install -r requirements.txt
 
 echo Launching the API server...
 python3 api.py
