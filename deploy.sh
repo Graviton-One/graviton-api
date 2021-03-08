@@ -1,6 +1,10 @@
 #!/bin/bash
 set -e
 
+unicorn_pid=`cat /tmp/pids/unicorn.pid`
+echo "Restarting Unicorn ($unicorn_pid)"
+kill -HUP $unicorn_pid
+
 git clean -fd
 git reset --hard
 # branch=$(git branch | grep '*' | awk '{ print $2 }')
@@ -11,17 +15,17 @@ git_c () {
 git_c "git pull origin develop-deploy_setup"
 git_c "git checkout develop-deploy_setup"
 
-echo Installing venv...
-apt install python3-venv
+#echo Installing venv...
+#apt install python3-venv
 
-echo Creating a virtual environment...
-python3 -m venv venv 
+#echo Creating a virtual environment...
+#python3 -m venv venv 
 
-echo Activating the virtual environment...
-source ./venv/bin/activate
+#echo Activating the virtual environment...
+#source ./venv/bin/activate
 
 echo Installing requirements via pip...
 pip install -r requirements.txt
 
 echo Launching the API server...
-gunicorn --bind 0.0.0.0:5000 wsgi:app
+gunicorn --bind 0.0.0.0:5000 --daemon wsgi:app 
