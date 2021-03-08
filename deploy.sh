@@ -9,7 +9,7 @@ git_c () {
 }
 # git_c "git pull origin $branch"
 git_c "git pull origin develop"
-git_c "git checkout -b develop"
+git_c "git checkout develop"
 
 echo Installing requirements via pip...
 pip3 install -r requirements.txt
