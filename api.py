@@ -8,7 +8,7 @@ app = Flask(__name__)
 api = Api(app, version='0.1.0', title='Graviton API', description='An Open API for Gravity, SuSy & Graviton')
 
 parser = reqparse.RequestParser()
-parser.add_argument("request_id", type=str)
+parser.add_argument("request_id", type=str, required=True)
 
 @api.route('/test')
 class Test(Resource):
@@ -25,7 +25,9 @@ class Swaps(Resource):
         return filtered_by_request_id
 
 if __name__ == '__main__':
-    app.run()
+    app.run(host='0.0.0.0')
+
+    
 
 
 

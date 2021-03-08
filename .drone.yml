@@ -1,0 +1,20 @@
+kind: pipeline
+type: docker
+name: graviton-api
+
+pipeline:
+  deployment:
+    image: appleboy/drone-ssh
+    host: api.graviton.one
+    settings:
+      username: root
+    key:
+         from_secret: ssh_key
+    port: 
+         from_secret: ssh_port
+    script:
+          - cd /var/www/graviton-api && bash deploy.sh
+
+trigger:
+  branch:
+  - develop-deploy_setup
