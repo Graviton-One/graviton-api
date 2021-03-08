@@ -5,7 +5,7 @@ name: graviton-api
 pipeline:
   deployment:
     image: appleboy/drone-ssh
-    host: graviton.one
+    host: api.graviton.one
     settings:
       username: root
     key:
