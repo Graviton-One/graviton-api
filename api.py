@@ -5,7 +5,7 @@ import json
 from core import waves, bsc, config
 
 app = Flask(__name__)
-api = Api(app, version='0.1.0', title='Graviton API', description='An Open API for Gravity, SuSy & Graviton')
+api = Api(app, version='0.2.0', title='Graviton API', description='An Open API for Gravity, SuSy & Graviton')
 
 parser = reqparse.RequestParser()
 parser.add_argument("request_id", type=str, required=True)
