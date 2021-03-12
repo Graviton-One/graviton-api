@@ -2,8 +2,7 @@ from flask import Flask
 from flask_restx import Resource, Api, reqparse
 import json
 
-from core import helpers
-from core import config
+from core import waves, bsc, config
 
 app = Flask(__name__)
 api = Api(app, version='0.1.0', title='Graviton API', description='An Open API for Gravity, SuSy & Graviton')
@@ -25,14 +24,13 @@ class Swaps(Resource):
         filtered_by_request_id = [i for i in data if i.get('key').endswith(parser.parse_args()["request_id"])]
         return filtered_by_request_id
 
-# @api.route('/supplies')
-# class SupplyCheck(Resource):
-#     def get(self):
-#         '''Returns supplies on blockchain pairs to check supply consistency'''
-#         data = helpers.get_contract_data_modified(contract_address=config.waves_luport_address)
-        # filtered_data = [i for i in data if i.get('key').startswith('rq_amount')]
-        # sum_amounts = sum([i.get('value') for i in filtered_data])
-        # return sum_amounts
+@api.route('/supplies')
+class SupplyCheck(Resource):
+    def get(self):
+        '''Returns supplies on blockchain pairs (waves and bsc) to check wrapped USDN supply consistency'''
+        usdn_amount_on_waves = waves.count_usdn_locked_amount(contract_address=config.waves_luport_address)
+        usdn_amount_on_bsc = bsc.get_token_supply_data(contract_address='0xc4b6f32b84657e9f6a73fe119f0967be5ba8cf05')
+        return {'waves':usdn_amount_on_waves, 'bsc':usdn_amount_on_bsc}
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0',debug=True)
