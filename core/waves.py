@@ -36,3 +36,5 @@ def count_usdn_locked_amount(contract_address): # TODO check consistency
             amount += result[kv].get('rq_amount')
     return amount/10**6
 
+
+

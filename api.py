@@ -20,7 +20,7 @@ class Swaps(Resource):
     @api.expect(parser)
     def get(self):
         '''Returns swap data associated with a specific tx id.'''
-        data = helpers.get_contract_data(contract_address=config.waves_luport_address)
+        data = waves.get_contract_data(contract_address=config.waves_luport_address)
         filtered_by_request_id = [i for i in data if i.get('key').endswith(parser.parse_args()["request_id"])]
         return filtered_by_request_id
 
