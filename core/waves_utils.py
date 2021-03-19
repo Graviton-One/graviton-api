@@ -18,7 +18,7 @@ def get_and_restructure_contract_data(contract_address, tx_id, node_url=default_
         if len(x) > 1 and len(x[1]) > 16:
             x[0] = x[0][:-1:] # stripping the last underscore from key
             if x[1] not in result:
-                result[x[1]] = {}
+                result[x[1]] = {} 
                 result[x[1]][x[0]] = kv.get('value')
             else:
                 result[x[1]][x[0]] = kv.get('value')
@@ -31,4 +31,3 @@ def count_usdn_locked_amount(contract_address): # TODO check consistency
         if data[kv].get('rq_status') == 1 and data[kv].get('rq_type') == 1: 
             amount += data[kv].get('rq_amount')
     return amount/10**6
-
