@@ -5,7 +5,7 @@ import json
 from core import waves, bsc, config
 
 app = Flask(__name__)
-api = Api(app, version='0.2.1', title='Graviton API', description='An Open API for Gravity, SuSy & Graviton')
+api = Api(app, version='0.3', title='Graviton API', description='An Open API for Gravity, SuSy & Graviton')
 
 parser = reqparse.RequestParser()
 parser.add_argument("request_id", type=str, required=True)
@@ -20,9 +20,11 @@ class Swaps(Resource):
     @api.expect(parser)
     def get(self):
         '''Returns swap data associated with a specific tx id.'''
-        data = waves.get_contract_data(contract_address=config.waves_luport_address)
-        filtered_by_request_id = [i for i in data if i.get('key').endswith(parser.parse_args()["request_id"])]
-        return filtered_by_request_id
+        args = parser.parse_args()
+        print(args)
+        data = waves.get_and_restructure_contract_data(contract_address=config.waves_luport_address, tx_id=args.get('request_id'))
+        return data
+
 
 @api.route('/supplies')
 class SupplyCheck(Resource):
