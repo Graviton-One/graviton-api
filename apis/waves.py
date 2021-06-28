@@ -13,7 +13,6 @@ parser.add_argument("request_id", type=str, required=True)
 @api.route('/test')
 class Test(Resource):
     def get(self):
-        print('test')
         return {'status': 'OK'}
 
 @api.route('/swaps')
@@ -30,7 +29,6 @@ class Supply(Resource):
         '''Returns GTON circulating supply. '''
         invoker = Invoker(INFURA_URL)
         supply = invoker.getGtonBalance()
-        print(supply)
         return 21000000 - supply
 
 # @api.route('/supplies')
