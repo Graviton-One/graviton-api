@@ -1,7 +1,8 @@
 from flask_restx import Resource, Api, Namespace, reqparse
 
 from core import waves_utils, bsc_utils
-from core.invoker import Invoker, constants
+from core.invoker.Invoker import Invoker
+from core.invoker.constants import INFURA_URL
 
 api = Namespace('waves', description='Waves related requests')
 
@@ -27,7 +28,7 @@ class Swaps(Resource):
 class Supply(Resource):
     def get(self):
         '''Returns GTON circulating supply. '''
-        invoker = Invoker(constants.INFURA_URL)
+        invoker = Invoker(INFURA_URL)
         supply = invoker.getGtonBalance()
         print(supply)
         return 21000000 - supply

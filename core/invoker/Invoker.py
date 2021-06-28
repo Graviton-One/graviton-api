@@ -1,11 +1,6 @@
 from web3 import Web3
-import os
-THIS_FOLDER = os.path.dirname(os.path.abspath(__file__))
-ercabipath = os.path.join(THIS_FOLDER, 'abi/erc20.json')
+from .constants import erc20ABIString
 
-with open(ercabipath) as json_file:
-    erc20ABIString = json_file
-    
 class Invoker:
 
     def __init__(self, url):
