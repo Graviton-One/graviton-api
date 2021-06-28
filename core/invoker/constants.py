@@ -6,4 +6,4 @@ ercabipath = os.path.join(THIS_FOLDER, 'abi/erc20.json')
 with open(ercabipath) as json_file:
     erc20ABIString = json_file.read()
 
-INFURA_URL = "https://mainnet.infura.io/v3/ec6afadb1810471dbb600f24b86391d2"
+INFURA_URL = "https://mainnet.infura.io/v3/d456e06a80f44aca9e273f0172d035f1"
