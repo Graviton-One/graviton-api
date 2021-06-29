@@ -1,8 +1,6 @@
 from flask_restx import Resource, Api, Namespace, reqparse
 
 from core import waves_utils, bsc_utils
-from core.invoker.Invoker import Invoker
-from core.invoker.constants import INFURA_URL
 
 api = Namespace('waves', description='Waves related requests')
 
@@ -22,14 +20,6 @@ class Swaps(Resource):
         '''Returns swap data associated with a specific port address and tx id.'''
         args = parser.parse_args()
         return waves_utils.get_and_restructure_contract_data(contract_address=args.get('port_address'), tx_id=args.get('request_id'))
-
-@api.route('/supply')
-class Supply(Resource):
-    def get(self):
-        '''Returns GTON circulating supply. '''
-        invoker = Invoker(INFURA_URL)
-        supply = invoker.getGtonBalance()
-        return 21000000 - supply
 
 # @api.route('/supplies')
 # class SupplyCheck(Resource):
