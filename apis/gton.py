@@ -12,7 +12,7 @@ class Stats(Resource):
         invoker = Invoker(INFURA_URL)
         supply = invoker.getGtonBalance()
         circulating = 21000000 - supply
-        return {circulating}
+        return {"circulating":circulating}
 
 # @api.route('/supplies')
 # class SupplyCheck(Resource):
