@@ -1,5 +1,4 @@
 from flask_restx import Resource, Api, Namespace, reqparse
-import json
 
 from core import waves_utils, bsc_utils
 
