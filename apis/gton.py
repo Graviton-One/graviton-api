@@ -5,14 +5,14 @@ from core.invoker.constants import INFURA_URL
 
 api = Namespace('gton', description='Gton related requests')
 
-@api.route('/stats')
-class Stats(Resource):
+@api.route('/circulating')
+class Circulating(Resource):
     def get(self):
         '''Returns GTON circulating supply. '''
         invoker = Invoker(INFURA_URL)
         supply = invoker.getGtonBalance()
         circulating = 21000000 - supply
-        return {"circulating":circulating}
+        return circulating
 
 # @api.route('/supplies')
 # class SupplyCheck(Resource):
