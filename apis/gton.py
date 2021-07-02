@@ -14,6 +14,12 @@ class Circulating(Resource):
         circulating = 21000000 - supply
         return circulating
 
+@api.route('/total')
+class Total(Resource):
+    def get(self):
+        '''Returns total GTON supply. '''
+        return 21000000
+
 # @api.route('/supplies')
 # class SupplyCheck(Resource):
 #     def get(self):
